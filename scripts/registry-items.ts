@@ -109,6 +109,23 @@ function assertSyncedWithCategories(discovered: DiscoveredItem[]): void {
 	}
 }
 
+function usesImageProxy(source: string): boolean {
+	return source.includes('$lib/utils/imageProxy') || source.includes('utils/imageProxy');
+}
+
+const IMAGE_PROXY_REGISTRY_ITEM: RegistryItem = {
+	name: 'image-proxy',
+	type: 'lib',
+	title: 'Image Proxy',
+	description: 'Same-origin URL helper for external images in WebGL textures and img tags.',
+	files: [
+		{
+			path: 'src/lib/utils/imageProxy.ts',
+			target: '$lib/utils/imageProxy.ts'
+		}
+	]
+};
+
 /**
  * Returns jsrepo registry items for all components under `src/lib/components/library`.
  */
@@ -154,8 +171,17 @@ export async function getRegistryItems(cwd: string): Promise<RegistryItem[]> {
 		if (header.registryDependencies?.length)
 			registryItem.registryDependencies = header.registryDependencies;
 
+		if (usesImageProxy(raw)) {
+			registryItem.registryDependencies = [
+				...(registryItem.registryDependencies ?? []),
+				'image-proxy'
+			];
+		}
+
 		items.push(registryItem);
 	}
+
+	items.unshift(IMAGE_PROXY_REGISTRY_ITEM);
 
 	return items;
 }
