@@ -103,8 +103,8 @@
 						<option value={category}>{category}</option>
 					{/each}
 				</select>
-				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-					<polyline points="6 9 12 15 18 9" />
+				<svg class="component-list-select-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="M6 9l6 6l6 -6" />
 				</svg>
 			</label>
 
@@ -199,8 +199,94 @@
 	.component-list-search input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: #fff; font: inherit; }
 	.component-list-search input::placeholder { color: rgba(255,255,255,0.3); }
 	.component-list-select { position: relative; display: flex; align-items: center; width: 180px; height: 36px; border-radius: 10px; }
-	.component-list-select select { appearance: none; -webkit-appearance: none; width: 100%; height: 100%; border: 0; background: transparent; color: inherit; font: inherit; padding: 0 46px 0 12px; outline: 0; cursor: pointer; }
-	.component-list-select svg { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: #fff; pointer-events: none; }
+	.component-list-select select {
+		appearance: none;
+		-webkit-appearance: none;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		background: transparent;
+		color: inherit;
+		font: inherit;
+		padding: 0 46px 0 12px;
+		outline: 0;
+		cursor: pointer;
+		color-scheme: dark;
+	}
+	.component-list-select-chevron {
+		position: absolute;
+		right: 8px;
+		top: 50%;
+		transform: translateY(-50%);
+		color: rgba(255, 255, 255, 0.85);
+		pointer-events: none;
+		transition: transform 0.2s ease;
+	}
+
+	.component-list-select:has(select:open) .component-list-select-chevron {
+		transform: translateY(-50%) rotate(180deg);
+	}
+
+	@supports (appearance: base-select) {
+		.component-list-select select {
+			appearance: base-select;
+			-webkit-appearance: base-select;
+			display: flex;
+			align-items: center;
+			padding: 0 36px 0 12px;
+			line-height: 1.2;
+		}
+
+		.component-list-select select,
+		.component-list-select select::picker(select) {
+			appearance: base-select;
+			-webkit-appearance: base-select;
+		}
+
+		.component-list-select select::picker-icon {
+			display: none;
+		}
+
+		.component-list-select select::picker(select) {
+			margin-top: 6px;
+			padding: 4px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 10px;
+			background: rgba(20, 17, 14, 0.96);
+			backdrop-filter: blur(32px) saturate(1.3);
+			-webkit-backdrop-filter: blur(32px) saturate(1.3);
+			color-scheme: dark;
+			box-shadow: var(--shadow-dropdown);
+		}
+
+		.component-list-select option {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 8px;
+			min-height: 34px;
+			padding: 0 10px;
+			border-radius: 6px;
+			background: transparent;
+			color: #fff;
+			line-height: 1.2;
+		}
+
+		.component-list-select option::checkmark {
+			display: none;
+		}
+
+		.component-list-select option:hover,
+		.component-list-select option:focus {
+			background: rgba(255, 255, 255, 0.08);
+		}
+
+		.component-list-select option:checked {
+			background: rgba(255, 138, 76, 0.2);
+			color: #fff;
+			font-weight: 500;
+		}
+	}
 	.clear-slot { width: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: width 0.3s ease; }
 	.clear-slot.show { width: 40px; }
 	.clear-button { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 0; color: rgba(255,255,255,0.5); cursor: pointer; opacity: 0; transform: scale(0.6); pointer-events: none; }
