@@ -75,6 +75,21 @@ npm run build
 npm run check
 ```
 
+## Деплой на Vercel
+
+Проект автоматически использует `@sveltejs/adapter-vercel`, когда переменная `VERCEL=1` (Vercel выставляет её при сборке). Локально и на Cloudflare остаётся `@sveltejs/adapter-cloudflare`.
+
+В настройках проекта на Vercel:
+
+| Параметр | Значение |
+| -------- | -------- |
+| Framework Preset | **SvelteKit** |
+| Build command | `npm run build` |
+| Output Directory | **оставить пустым** (не `public`) |
+| Install command | `npm install` |
+
+После push Vercel сам подхватит SvelteKit-вывод. Если раньше вручную указали Output Directory = `public` — удалите это значение.
+
 ## Деплой на Cloudflare
 
 В репозитории используется `@sveltejs/adapter-cloudflare` в `svelte.config.js` и `wrangler.jsonc` в формате Worker.
