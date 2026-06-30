@@ -42,10 +42,10 @@
 	}: Props = $props();
 
 	const DEFAULT_CARDS: StackCard[] = [
-		{ id: 1, image: 'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format', alt: 'card-1' },
-		{ id: 2, image: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format', alt: 'card-2' },
-		{ id: 3, image: 'https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format', alt: 'card-3' },
-		{ id: 4, image: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format', alt: 'card-4' }
+		{ id: 1, image: 'https://i.pinimg.com/736x/68/64/95/686495d7d5be345157ee8c0d39da0115.jpg', alt: 'card-1' },
+		{ id: 2, image: 'https://i.pinimg.com/736x/ab/1f/ae/ab1fae37fbb1589c75e053f5bf31a024.jpg', alt: 'card-2' },
+		{ id: 3, image: 'https://i.pinimg.com/736x/31/3e/5c/313e5c97b84ef7f7959ee4dd9f9f203f.jpg', alt: 'card-3' },
+		{ id: 4, image: 'https://i.pinimg.com/1200x/1c/19/a9/1c19a985d166bc08ef5236886d60e282.jpg', alt: 'card-4' }
 	];
 
 	let stack = $state<StackCard[]>(cardsData?.length ? cardsData.slice() : DEFAULT_CARDS.slice());
@@ -179,8 +179,8 @@
 </script>
 
 <div
-	class="relative"
-	style="perspective:600px;width:{cardDimensions.width}px;height:{cardDimensions.height}px;"
+	class="relative select-none"
+	style="perspective:600px;width:{cardDimensions.width}px;height:{cardDimensions.height}px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;"
 	role="presentation"
 	onmouseenter={() => pauseOnHover && (isPaused = true)}
 	onmouseleave={() => pauseOnHover && (isPaused = false)}
@@ -190,18 +190,18 @@
 		{@const rotZ = (stack.length - index - 1) * 4 + rotFor(card.id)}
 		{@const sc = 1 + index * 0.06 - stack.length * 0.06}
 		<div
-			class="absolute inset-0 {shouldDisableDrag ? 'cursor-pointer' : 'cursor-grab'}"
-			style="transform: translate({t.x}px, {t.y}px) rotateX({t.rotateX}deg) rotateY({t.rotateY}deg);"
+			class="absolute inset-0 {shouldDisableDrag ? 'cursor-pointer' : 'cursor-grab'} select-none"
+			style="transform: translate({t.x}px, {t.y}px) rotateX({t.rotateX}deg) rotateY({t.rotateY}deg);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;"
 			onpointerdown={(e) => onPointerDown(e, card.id)}
 		>
 			<div
-				class="rounded-2xl overflow-hidden w-full h-full transition-transform"
-				style="transform: rotate({rotZ}deg) scale({sc}); transform-origin:90% 90%; transition: transform {1000 / animationConfig.stiffness * 10}ms cubic-bezier(0.25, 0.1, 0.25, 1);"
+				class="rounded-2xl overflow-hidden w-full h-full transition-transform select-none"
+				style="transform: rotate({rotZ}deg) scale({sc}); transform-origin:90% 90%; transition: transform {1000 / animationConfig.stiffness * 10}ms cubic-bezier(0.25, 0.1, 0.25, 1);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;"
 				role="presentation"
 				onclick={() => shouldEnableClick && sendToBack(card.id)}
 			>
 				{#if card.image}
-					<img src={card.image} alt={card.alt ?? ''} class="w-full h-full object-cover pointer-events-none" />
+					<img src={card.image} alt={card.alt ?? ''} class="w-full h-full object-cover pointer-events-none select-none" draggable="false" style="-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;" />
 				{/if}
 			</div>
 		</div>

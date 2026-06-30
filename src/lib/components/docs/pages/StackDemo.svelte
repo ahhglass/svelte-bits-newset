@@ -8,7 +8,7 @@
 	import Stack from '$lib/components/library/Components/Stack/Stack.svelte';
 	import source from '$lib/components/library/Components/Stack/Stack.svelte?raw';
 
-	const DEFAULTS = { randomRotation: false, sensitivity: 200, autoplay: false, autoplayDelay: 3000, pauseOnHover: false };
+	const DEFAULTS = { randomRotation: false, sensitivity: 200, autoplay: true, autoplayDelay: 2000, pauseOnHover: false };
 	let randomRotation = $state(DEFAULTS.randomRotation);
 	let sensitivity = $state(DEFAULTS.sensitivity);
 	let autoplay = $state(DEFAULTS.autoplay);

@@ -10,13 +10,13 @@
 	import source from '$lib/components/library/Animations/OrbitImages/OrbitImages.svelte?raw';
 
 	const images = [
-	'https://i.pinimg.com/1200x/e0/b7/46/e0b74697df9a68cc7486772a3486f426.jpg',
-	'https://i.pinimg.com/1200x/b9/a3/03/b9a30317645461a2a91a5fcc79934316.jpg',
-	'https://i.pinimg.com/736x/b7/36/c7/b736c70e995f19d8cf42e8290bb30ef7.jpg',
-	'https://i.pinimg.com/1200x/4f/ef/b9/4fefb9d6a9150d9269e39e6f396990cb.jpg',
-	'https://i.pinimg.com/736x/89/9e/b4/899eb4c85fe72185eedc02c732a089b2.jpg',
-	'https://i.pinimg.com/736x/ad/23/7a/ad237aff1168a74f5c3bb8be12562100.jpg'
-];
+		'https://i.pinimg.com/1200x/e0/b7/46/e0b74697df9a68cc7486772a3486f426.jpg',
+		'https://i.pinimg.com/1200x/b9/a3/03/b9a30317645461a2a91a5fcc79934316.jpg',
+		'https://i.pinimg.com/736x/b7/36/c7/b736c70e995f19d8cf42e8290bb30ef7.jpg',
+		'https://i.pinimg.com/1200x/4f/ef/b9/4fefb9d6a9150d9269e39e6f396990cb.jpg',
+		'https://i.pinimg.com/736x/89/9e/b4/899eb4c85fe72185eedc02c732a089b2.jpg',
+		'https://i.pinimg.com/736x/ad/23/7a/ad237aff1168a74f5c3bb8be12562100.jpg'
+	];
 
 	const DEFAULTS = { shape: 'ellipse' as OrbitShape, radiusX: 340, radiusY: 80, radius: 160, rotation: -8, duration: 30, itemSize: 80, direction: 'normal' as 'normal' | 'reverse', fill: true, showPath: true, paused: false };
 	let shape = $state<OrbitShape>(DEFAULTS.shape);

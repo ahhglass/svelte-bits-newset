@@ -9,7 +9,7 @@
 
 	const DEFAULTS = {
 		blurStrength: 12, metalness: 1, roughness: 0.75, displacementStrength: 20,
-		noiseScale: 1, specularConstant: 5, grayscale: 0.15, glassDistortion: 30
+		noiseScale: 0.1, specularConstant: 5, grayscale: 0.15, glassDistortion: 30
 	};
 	let blurStrength = $state(DEFAULTS.blurStrength);
 	let metalness = $state(DEFAULTS.metalness);

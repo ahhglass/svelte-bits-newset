@@ -19,6 +19,7 @@
 		specularConstant?: number;
 		grayscale?: number;
 		glassDistortion?: number;
+		fallbackSrc?: string;
 		class?: string;
 	};
 
@@ -33,13 +34,19 @@
 		specularConstant = 1.2,
 		grayscale = 1,
 		glassDistortion = 0,
+		fallbackSrc = 'https://i.pinimg.com/736x/3e/36/00/3e3600f33f0c190104d30d2a971e1659.jpg',
 		class: className = ''
 	}: Props = $props();
 
 	let videoRef: HTMLVideoElement;
+	let useFallback = $state(false);
 
 	const baseFrequency = $derived(0.03 / Math.max(0.1, noiseScale));
 	const saturation = $derived(1 - Math.max(0, Math.min(1, grayscale)));
+	const mediaFilter =
+		'filter: saturate(var(--saturation, 0)) contrast(120%) brightness(110%) blur(var(--blur-strength, 12px)) url(#metallic-displacement);';
+	const mediaClass =
+		'absolute top-0 left-0 w-full h-full object-cover scale-[1.2] -scale-x-100 z-0 opacity-90 transition-[filter] duration-300';
 
 	onMount(() => {
 		let stream: MediaStream | null = null;
@@ -49,8 +56,8 @@
 					video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' }
 				});
 				if (videoRef) videoRef.srcObject = stream;
-			} catch (err) {
-				console.error('Error accessing webcam:', err);
+			} catch {
+				useFallback = true;
 			}
 		})();
 		return () => {
@@ -85,15 +92,11 @@
 		</defs>
 	</svg>
 
-	<!-- svelte-ignore a11y_media_has_caption -->
-	<video
-		bind:this={videoRef}
-		autoplay
-		playsinline
-		muted
-		class="absolute top-0 left-0 w-full h-full object-cover scale-[1.2] -scale-x-100 z-0 opacity-90 transition-[filter] duration-300"
-		style="filter: saturate(var(--saturation, 0)) contrast(120%) brightness(110%) blur(var(--blur-strength, 12px)) url(#metallic-displacement);"
-	></video>
+	{#if useFallback}
+		<img src={fallbackSrc} alt="" class={mediaClass} style={mediaFilter} />
+	{:else}
+		<video bind:this={videoRef} autoplay playsinline muted class={mediaClass} style={mediaFilter}></video>
+	{/if}
 
 	<div class="absolute inset-0 z-10 opacity-[var(--roughness,0.4)] pointer-events-none bg-[url('data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cfilter%20id%3D%27noiseFilter%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.8%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url(%23noiseFilter)%27%2F%3E%3C%2Fsvg%3E')] mix-blend-overlay"></div>
 
@@ -101,7 +104,7 @@
 
 	<div class="absolute inset-0 rounded-[20px] p-[1px] bg-[linear-gradient(135deg,rgba(255,255,255,0.8)_0%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.6)_100%)] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] [mask-composite:exclude] z-20 pointer-events-none"></div>
 
-	<div class="relative z-10 h-full flex flex-col justify-between p-8 text-[var(--text-color,white)] bg-[var(--overlay-color,rgba(255,255,255,0.05))]">
+	<div class="relative z-10 h-full flex flex-col justify-between p-8 mix-blend-exclusion text-[var(--text-color,white)] bg-[var(--overlay-color,rgba(255,255,255,0.05))]">
 		<div class="flex justify-between items-center border-b border-white/20 pb-4">
 			<div class="flex items-center gap-1.5 text-[10px] font-bold tracking-[0.1em] px-2 py-1 bg-white/10 rounded border border-white/20">
 				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
