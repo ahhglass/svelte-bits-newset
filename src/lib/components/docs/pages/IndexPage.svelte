@@ -7,4 +7,4 @@
 	<title>Svelte Bits — каталог компонентов</title>
 </svelte:head>
 
-<ComponentList title="Каталог" items={COMPONENT_INDEX_ITEMS} />
+<ComponentList title="Все компоненты" compactHeader items={COMPONENT_INDEX_ITEMS} />

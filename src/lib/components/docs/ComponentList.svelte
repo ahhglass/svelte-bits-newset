@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { ComponentIndexItem } from '$lib/constants/componentIndex';
+	import ComponentPreviewVideo from '$lib/components/docs/ComponentPreviewVideo.svelte';
 	import { getSavedComponents, removeSavedComponent, toggleSavedComponent } from '$lib/utils/favorites';
 	import { fuzzyMatch } from '$lib/utils/fuzzy';
 
 	type Props = {
 		title: string;
 		items: ComponentIndexItem[];
+		compactHeader?: boolean;
 		hasDeleteButton?: boolean;
 		emptyTitle?: string;
 		emptyDescription?: string;
@@ -15,6 +17,7 @@
 	let {
 		title,
 		items,
+		compactHeader = false,
 		hasDeleteButton = false,
 		emptyTitle,
 		emptyDescription
@@ -27,7 +30,6 @@
 	let selectedCategory = $state('Все компоненты');
 	let hoveredKey = $state<string | null>(null);
 	let savedSet = $state<Set<string>>(new Set());
-	let videoRefs = new Map<string, HTMLVideoElement>();
 
 	const filtered = $derived.by(() => {
 		const term = search.trim();
@@ -59,32 +61,8 @@
 		selectedCategory = 'Все компоненты';
 	}
 
-	function setVideo(node: HTMLVideoElement, key: string) {
-		videoRefs.set(key, node);
-		return {
-			destroy() {
-				videoRefs.delete(key);
-			}
-		};
-	}
-
-	function handleLoadedMetadata(e: Event) {
-		(e.currentTarget as HTMLVideoElement).currentTime = 0.1;
-	}
-
 	$effect(() => {
 		if (!categoryOptions.includes(selectedCategory)) selectedCategory = 'Все компоненты';
-	});
-
-	$effect(() => {
-		for (const [key, video] of videoRefs) {
-			if (key === hoveredKey) {
-				const play = video.play();
-				if (play && typeof play.catch === 'function') play.catch(() => {});
-			} else {
-				video.pause();
-			}
-		}
 	});
 
 	onMount(() => {
@@ -104,7 +82,11 @@
 
 <div class="component-list-page">
 	<div class="component-list-header page-transition-fade">
-		<h1 class="sub-category">{title}</h1>
+		{#if compactHeader}
+			<h2 class="component-list-title">{title}</h2>
+		{:else}
+			<h1 class="sub-category">{title}</h1>
+		{/if}
 
 		<div class="component-list-controls" class:disabled={items.length === 0}>
 			<label class="component-list-search">
@@ -161,10 +143,11 @@
 						}}
 					>
 						<div class="component-list-media-wrap">
-							<video use:setVideo={item.key} loop muted playsinline preload="metadata" onloadedmetadata={handleLoadedMetadata} aria-label={`${item.title} preview`}>
-								<source src={`${item.videoBase}.webm`} type="video/webm" />
-								<source src={`${item.videoBase}.mp4`} type="video/mp4" />
-							</video>
+							<ComponentPreviewVideo
+								videoBase={item.videoBase}
+								title={item.title}
+								playing={hoveredKey === item.key}
+							/>
 						</div>
 
 						<div class="component-list-card-copy">
@@ -199,7 +182,14 @@
 <style>
 	.component-list-page { width: 100%; }
 	.component-list-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 3rem; }
-	.component-list-header .sub-category { margin: 0; }
+	.component-list-header .sub-category,
+	.component-list-header .component-list-title { margin: 0; }
+	.component-list-title {
+		font-size: 1.5rem;
+		font-weight: 500;
+		color: var(--text-muted);
+		line-height: 1.2;
+	}
 	.component-list-controls { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
 	.component-list-controls.disabled { opacity: 0.5; pointer-events: none; }
 	.component-list-search, .component-list-select, .clear-button, .pill-button { border: 1px solid rgba(255,255,255,0.08); background: rgba(20,17,14,0.45); backdrop-filter: blur(32px) saturate(1.3); -webkit-backdrop-filter: blur(32px) saturate(1.3); color: #fff; font-size: 13px; font-weight: 500; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, opacity 0.2s ease; }
@@ -220,7 +210,6 @@
 	.component-list-card { display: block; background: var(--bg-elevated); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--card-radius); padding: 6px; text-decoration: none; overflow: hidden; transition: border-color 0.2s ease; }
 	.component-list-card:hover { border-color: rgba(255,255,255,0.1); text-decoration: none; }
 	.component-list-media-wrap { position: relative; height: 190px; background: var(--bg-body); border-radius: 12px; overflow: hidden; }
-	.component-list-media-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; filter: grayscale(100%); mix-blend-mode: screen; }
 	.favorite-button { position: absolute; top: 8px; right: 8px; z-index: 2; width: 28px; height: 28px; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; background: rgba(0,0,0,0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; opacity: 0; pointer-events: none; transition: all 0.2s ease; }
 	.component-list-card-wrap:hover .favorite-button, .favorite-button.visible { opacity: 1; pointer-events: auto; }
 	.favorite-button.saved { color: var(--color-primary); }

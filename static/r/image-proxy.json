@@ -1,0 +1,17 @@
+{
+	"$schema": "https://ui.shadcn.com/schema/registry-item.json",
+	"name": "image-proxy",
+	"title": "Image Proxy",
+	"description": "Same-origin URL helper for external images in WebGL textures and img tags.",
+	"type": "registry:lib",
+	"files": [
+		{
+			"type": "registry:lib",
+			"path": "imageProxy.ts",
+			"target": "$lib/utils/imageProxy.ts",
+			"content": "export function isCrossOriginImage(src: string): boolean {\n\ttry {\n\t\treturn new URL(src, window.location.href).origin !== window.location.origin;\n\t} catch {\n\t\treturn true;\n\t}\n}\n\n/** Same-origin proxy for external images (WebGL textures, `<img>`, canvas). */\nexport function resolveWebGLImageUrl(src: string): string {\n\ttry {\n\t\tconst url = new URL(src, window.location.href);\n\t\tif (url.origin === window.location.origin) return src;\n\t\treturn `/api/image-proxy?url=${encodeURIComponent(src)}`;\n\t} catch {\n\t\treturn src;\n\t}\n}\n\nexport const resolveProxiedImageUrl = resolveWebGLImageUrl;\n\nexport function loadWebGLImage(src: string): HTMLImageElement {\n\tconst resolved = resolveWebGLImageUrl(src);\n\tconst img = new Image();\n\tif (isCrossOriginImage(resolved)) img.crossOrigin = 'anonymous';\n\timg.src = resolved;\n\treturn img;\n}\n"
+		}
+	],
+	"registryDependencies": [],
+	"dependencies": []
+}

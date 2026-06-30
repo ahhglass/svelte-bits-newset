@@ -4,6 +4,21 @@
 	"homepage": "https://sveltebits.xyz",
 	"items": [
 		{
+			"name": "image-proxy",
+			"title": "Image Proxy",
+			"description": "Same-origin URL helper for external images in WebGL textures and img tags.",
+			"type": "registry:lib",
+			"dependencies": [],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:lib",
+					"path": "imageProxy.ts",
+					"target": "$lib/utils/imageProxy.ts"
+				}
+			]
+		},
+		{
 			"name": "animated-content",
 			"title": "Animated Content",
 			"description": "Scroll-triggered entrance animation with distance, direction, scale and opacity controls. Powered by GSAP + ScrollTrigger.",
@@ -1280,7 +1295,9 @@
 				"gsap",
 				"gsap@^3.15.0"
 			],
-			"registryDependencies": [],
+			"registryDependencies": [
+				"image-proxy"
+			],
 			"files": [
 				{
 					"type": "registry:component",
@@ -1403,7 +1420,9 @@
 				"ogl",
 				"ogl@^1.0.11"
 			],
-			"registryDependencies": [],
+			"registryDependencies": [
+				"image-proxy"
+			],
 			"files": [
 				{
 					"type": "registry:component",
@@ -1526,7 +1545,9 @@
 				"ogl",
 				"ogl@^1.0.11"
 			],
-			"registryDependencies": [],
+			"registryDependencies": [
+				"image-proxy"
+			],
 			"files": [
 				{
 					"type": "registry:component",
@@ -1604,7 +1625,9 @@
 				"gl-matrix",
 				"gl-matrix@^3.4.4"
 			],
-			"registryDependencies": [],
+			"registryDependencies": [
+				"image-proxy"
+			],
 			"files": [
 				{
 					"type": "registry:component",
