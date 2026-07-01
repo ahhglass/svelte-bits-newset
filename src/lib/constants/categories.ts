@@ -1,6 +1,6 @@
 import { categoryLabel, subcategoryLabel } from './categoryLabels';
 
-export const NEW: string[] = ['draggable-pill-nav', 'scrambling-ascii', 'cinematic-slider', 'distortion-slider', 'button'];
+export const NEW: string[] = ['card-nav-v2', 'draggable-pill-nav', 'scrambling-ascii', 'cinematic-slider', 'distortion-slider', 'button'];
 
 export const UPDATED: string[] = [];
 
