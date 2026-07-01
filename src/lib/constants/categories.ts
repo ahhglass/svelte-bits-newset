@@ -1,6 +1,6 @@
 import { categoryLabel, subcategoryLabel } from './categoryLabels';
 
-export const NEW: string[] = ['card-nav-v2', 'draggable-pill-nav', 'scrambling-ascii', 'cinematic-slider', 'distortion-slider', 'button'];
+export const NEW: string[] = ['card-nav-v2', 'draggable-pill-nav', 'scrambling-ascii', 'cinematic-slider', 'distortion-slider', 'button', 'pixelated-video-hover', 'scroll-triggered-footer-animation', 'animated-cards-way-too-bouncy', 'fluid-interaction-cursor', 'flowing-contact-info', 'digital-hover-image'];
 
 export const UPDATED: string[] = [];
 
@@ -81,6 +81,7 @@ export const CATEGORIES: Category[] = [
 		'Image Trail',
 		'Ribbons',
 		'Splash Cursor',
+		'Fluid Interaction Cursor',
 		'Meta Balls',
 		'Blob Cursor',
 		'Star Border'
@@ -113,6 +114,11 @@ export const CATEGORIES: Category[] = [
 		'Carousel',
 		'Cinematic Slider',
 		'Distortion Slider',
+		'Pixelated Video Hover',
+		'Scroll-Triggered Footer Animation',
+		'Animated Cards Way Too Bouncy',
+		'Flowing Contact Info',
+		'Digital Hover Image',
 		'Spotlight Card',
 		'Border Glow',
 		'Flying Posters',
@@ -233,6 +239,7 @@ export const IMPLEMENTED_DEMOS = new Set<string>([
 	'glitch-text',
 	'star-border',
 	'splash-cursor',
+	'fluid-interaction-cursor',
 	'noise',
 	'blur-text',
 	'fade-content',
@@ -281,6 +288,12 @@ export const IMPLEMENTED_DEMOS = new Set<string>([
 	'carousel',
 	'cinematic-slider',
 	'distortion-slider',
+	'pixelated-video-hover',
+	'scroll-triggered-footer-animation',
+	'animated-cards-way-too-bouncy',
+	'fluid-interaction-cursor',
+	'flowing-contact-info',
+	'digital-hover-image',
 	'chroma-grid',
 	'counter',
 	'decay-card',

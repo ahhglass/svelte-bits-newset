@@ -179,31 +179,34 @@
 			raf = requestAnimationFrame(tick);
 		};
 
-		const updateMouse = (x: number, y: number) => {
-			mouse.x = x - bounding.left;
-			mouse.y = y - bounding.top;
+		const updateMouse = (clientX: number, clientY: number) => {
+			const rect = containerRef.getBoundingClientRect();
+			mouse.x = clientX - rect.left;
+			mouse.y = clientY - rect.top;
 			if (!mouse.set) {
-				mouse.sx = mouse.x; mouse.sy = mouse.y;
-				mouse.lx = mouse.x; mouse.ly = mouse.y;
+				mouse.sx = mouse.x;
+				mouse.sy = mouse.y;
+				mouse.lx = mouse.x;
+				mouse.ly = mouse.y;
 				mouse.set = true;
 			}
 		};
-		const onMouseMove = (e: MouseEvent) => updateMouse(e.clientX, e.clientY);
-		const onTouchMove = (e: TouchEvent) => updateMouse(e.touches[0].clientX, e.touches[0].clientY);
-		const onResize = () => { setSize(); setLines(); };
+		const onPointerMove = (e: PointerEvent) => updateMouse(e.clientX, e.clientY);
+		const onResize = () => {
+			setSize();
+			setLines();
+		};
 
 		setSize();
 		setLines();
 		raf = requestAnimationFrame(tick);
 		window.addEventListener('resize', onResize);
-		window.addEventListener('mousemove', onMouseMove);
-		window.addEventListener('touchmove', onTouchMove, { passive: false });
+		containerRef.addEventListener('pointermove', onPointerMove);
 
 		return () => {
 			cancelAnimationFrame(raf);
 			window.removeEventListener('resize', onResize);
-			window.removeEventListener('mousemove', onMouseMove);
-			window.removeEventListener('touchmove', onTouchMove);
+			containerRef.removeEventListener('pointermove', onPointerMove);
 		};
 	});
 </script>
@@ -217,5 +220,5 @@
 		class="absolute left-0 top-0 h-2 w-2 rounded-full bg-[#160000]"
 		style="transform: translate3d(calc(var(--x) - 50%), calc(var(--y) - 50%), 0); will-change: transform;"
 	></div>
-	<canvas bind:this={canvasRef} class="block h-full w-full"></canvas>
+	<canvas bind:this={canvasRef} class="block h-full w-full touch-none"></canvas>
 </div>

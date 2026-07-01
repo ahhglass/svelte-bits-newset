@@ -157,6 +157,24 @@
 			]
 		},
 		{
+			"name": "fluid-interaction-cursor",
+			"title": "Fluid Interaction Cursor",
+			"description": "GPU fluid ink cursor with threshold display shader — Cappen-style interaction field.",
+			"type": "registry:component",
+			"dependencies": [
+				"three",
+				"three@^0.184.0"
+			],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "FluidInteractionCursor.svelte",
+					"target": "$lib/components/svelte-bits/FluidInteractionCursor.svelte"
+				}
+			]
+		},
+		{
 			"name": "ghost-cursor",
 			"title": "Ghost Cursor",
 			"description": "WebGL ghostly cursor trail rendered with three.js + bloom + film grain post-processing.",
@@ -1257,6 +1275,24 @@
 			]
 		},
 		{
+			"name": "animated-cards-way-too-bouncy",
+			"title": "Animated Cards Way Too Bouncy",
+			"description": "Magnetic spring-physics cards that bounce and tilt from cursor velocity with neighbor influence.",
+			"type": "registry:component",
+			"dependencies": [
+				"gsap",
+				"gsap@^3.15.0"
+			],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "AnimatedCardsWayTooBouncy.svelte",
+					"target": "$lib/components/svelte-bits/AnimatedCardsWayTooBouncy.svelte"
+				}
+			]
+		},
+		{
 			"name": "animated-list",
 			"title": "Animated List",
 			"description": "Scroll-aware list with item-by-item scale + fade transitions and keyboard navigation.",
@@ -1501,6 +1537,21 @@
 			]
 		},
 		{
+			"name": "digital-hover-image",
+			"title": "Digital Hover Image",
+			"description": "Grid of monospace symbols that scramble and reveal on cursor hover over an image.",
+			"type": "registry:component",
+			"dependencies": [],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "DigitalHoverImage.svelte",
+					"target": "$lib/components/svelte-bits/DigitalHoverImage.svelte"
+				}
+			]
+		},
+		{
 			"name": "distortion-slider",
 			"title": "Distortion Slider",
 			"description": "Three.js image slider with vertex distortion, momentum scroll, and drag interaction.",
@@ -1586,6 +1637,26 @@
 					"type": "registry:component",
 					"path": "ElasticSlider.svelte",
 					"target": "$lib/components/svelte-bits/ElasticSlider.svelte"
+				}
+			]
+		},
+		{
+			"name": "flowing-contact-info",
+			"title": "Flowing Contact Info",
+			"description": "Infinite scroll contact rows with expanding gap animation and centered brand icon swap.",
+			"type": "registry:component",
+			"dependencies": [
+				"gsap",
+				"lenis",
+				"gsap@^3.15.0",
+				"lenis@^1.3.23"
+			],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "FlowingContactInfo.svelte",
+					"target": "$lib/components/svelte-bits/FlowingContactInfo.svelte"
 				}
 			]
 		},
@@ -1795,6 +1866,24 @@
 			]
 		},
 		{
+			"name": "pixelated-video-hover",
+			"title": "Pixelated Video Hover",
+			"description": "Video with pixelated grid deformation and chromatic aberration on cursor movement.",
+			"type": "registry:component",
+			"dependencies": [
+				"three",
+				"three@^0.184.0"
+			],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "PixelatedVideoHover.svelte",
+					"target": "$lib/components/svelte-bits/PixelatedVideoHover.svelte"
+				}
+			]
+		},
+		{
 			"name": "profile-card",
 			"title": "Profile Card",
 			"description": "Holographic profile card with pointer/device-orientation tilt and animated shine.",
@@ -1839,6 +1928,26 @@
 					"type": "registry:component",
 					"path": "ScrollStack.svelte",
 					"target": "$lib/components/svelte-bits/ScrollStack.svelte"
+				}
+			]
+		},
+		{
+			"name": "scroll-triggered-footer-animation",
+			"title": "Scroll-Triggered Footer Animation",
+			"description": "Footer reveal on scroll with SplitText headings, ASCII canvas hands, and parallax hover.",
+			"type": "registry:component",
+			"dependencies": [
+				"gsap",
+				"lenis",
+				"gsap@^3.15.0",
+				"lenis@^1.3.23"
+			],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "ScrollTriggeredFooterAnimation.svelte",
+					"target": "$lib/components/svelte-bits/ScrollTriggeredFooterAnimation.svelte"
 				}
 			]
 		},
