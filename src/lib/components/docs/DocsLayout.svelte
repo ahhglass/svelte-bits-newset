@@ -53,7 +53,7 @@
 	});
 </script>
 
-<div class="docs-app">
+<div class="docs-app" class:docs-drawer-open={drawerOpen}>
 	<Navbar showDocs onhamburger={toggle} />
 
 	<div

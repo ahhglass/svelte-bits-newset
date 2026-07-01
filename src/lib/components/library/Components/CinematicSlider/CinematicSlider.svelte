@@ -308,7 +308,7 @@
 
 	{#if showInfoBar}
 		<div
-			class="info-bar pointer-events-none absolute bottom-[16%] left-1/2 z-[200] inline-flex -translate-x-1/2 select-none items-center gap-8 whitespace-nowrap rounded-full px-8 py-2.5 text-[1.1rem] font-normal tracking-wide  mix-blend-difference transition-[width] duration-200 will-change-[width]"
+			class="info-bar pointer-events-none absolute bottom-[16%] left-1/2 z-10 inline-flex -translate-x-1/2 select-none items-center gap-8 whitespace-nowrap rounded-full px-8 py-2.5 text-[1.1rem] font-normal tracking-wide  mix-blend-difference transition-[width] duration-200 will-change-[width]"
 			bind:this={infoBarEl}
 			style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"
 		>

@@ -133,7 +133,7 @@
 	{#snippet preview()}
 		<div
 			class="demo-container flex min-h-[280px] flex-col items-center justify-center gap-4 p-8"
-			style="background: #14110E;"
+			style="background: var(--bg-body);"
 		>
 			<Button
 				{variant}

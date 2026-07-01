@@ -214,6 +214,7 @@
 				bounds: boundsEl as HTMLElement | Window,
 				cursor: 'grab',
 				activeCursor: 'grabbing',
+				zIndexBoost: false,
 				onDragStart() {
 					const activeWidth = isMenuOpen ? currentOpenWidth : closedMenuWidth;
 					gsap.set(menuDropZone, { width: activeWidth });
