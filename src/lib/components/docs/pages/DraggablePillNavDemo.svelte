@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import TabsLayout from '$lib/components/docs/preview/TabsLayout.svelte';
 	import Customize from '$lib/components/docs/preview/Customize.svelte';
 	import PropTable, { type PropRow } from '$lib/components/docs/preview/PropTable.svelte';
@@ -97,6 +98,19 @@
 		{ value: 'dark', label: 'Тёмная тема' }
 	];
 
+	let isMobileViewport = $state(false);
+
+	$effect(() => {
+		if (!browser) return;
+		const mq = window.matchMedia('(max-width: 768px)');
+		const sync = () => {
+			isMobileViewport = mq.matches;
+		};
+		sync();
+		mq.addEventListener('change', sync);
+		return () => mq.removeEventListener('change', sync);
+	});
+
 	const navKey = $derived(
 		[
 			theme,
@@ -106,8 +120,24 @@
 			pillHoverColor,
 			textColor,
 			togglerColor,
-			dropZoneBorderColor
+			dropZoneBorderColor,
+			isMobileViewport
 		].join('-')
+	);
+
+	const demoItems = $derived(
+		isMobileViewport
+			? [
+					{ label: 'Home', href: '#' },
+					{ label: 'About', href: '#about' },
+					{ label: 'Contact', href: '#contact' }
+				]
+			: [
+					{ label: 'Home', href: '#' },
+					{ label: 'About', href: '#about' },
+					{ label: 'Blog', href: '#blog' },
+					{ label: 'Contact', href: '#contact' }
+				]
 	);
 
 	const usage = $derived(
@@ -175,12 +205,9 @@
 					{togglerColor}
 					{dropZoneBorderColor}
 					useFixedPosition={false}
-					items={[
-						{ label: 'Home', href: '#' },
-						{ label: 'About', href: '#about' },
-						{ label: 'Blog', href: '#blog' },
-						{ label: 'Contact', href: '#contact' }
-					]}
+					initialTop={isMobileViewport ? '0.75rem' : '1rem'}
+					initialLeft={isMobileViewport ? '0.75rem' : '1rem'}
+					items={demoItems}
 				/>
 			{/key}
 		</div>
@@ -226,6 +253,14 @@
 		text-align: center;
 		pointer-events: none;
 		user-select: none;
-		white-space: nowrap;
+		max-width: min(92%, 22rem);
+		line-height: 1.35;
+	}
+
+	@media (max-width: 768px) {
+		.demo-hint {
+			font-size: 0.75rem;
+			white-space: normal;
+		}
 	}
 </style>

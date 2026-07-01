@@ -527,7 +527,7 @@
 >
 	{#if showInfo}
 		<div
-			class="pointer-events-none absolute z-[2] flex text-white mix-blend-difference
+			class="distortion-info pointer-events-none absolute z-[2] flex text-white mix-blend-difference
 				{orientation === 'vertical'
 				? 'top-1/2 left-0 w-full -translate-y-1/2 justify-between px-8'
 				: 'top-0 left-1/2 h-full -translate-x-1/2 flex-col items-center justify-between py-8'}"
@@ -539,3 +539,11 @@
 
 	<canvas bind:this={canvasEl} class="absolute inset-0 z-[1] h-full w-full touch-none"></canvas>
 </section>
+
+<style>
+	@media (max-width: 768px) {
+		.distortion-info {
+			padding-inline: 1rem;
+		}
+	}
+</style>

@@ -214,6 +214,14 @@
 		text-align: center;
 		pointer-events: none;
 		user-select: none;
-		white-space: nowrap;
+		max-width: min(92%, 22rem);
+		line-height: 1.35;
+	}
+
+	@media (max-width: 768px) {
+		.demo-hint {
+			font-size: 0.75rem;
+			white-space: normal;
+		}
 	}
 </style>

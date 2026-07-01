@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import TabsLayout from '$lib/components/docs/preview/TabsLayout.svelte';
 	import Customize from '$lib/components/docs/preview/Customize.svelte';
 	import PropTable, { type PropRow } from '$lib/components/docs/preview/PropTable.svelte';
@@ -29,6 +30,25 @@
 	let scrollLerp = $state(DEFAULTS.scrollLerp);
 	let wheelMultiplier = $state(DEFAULTS.wheelMultiplier);
 	let showInfoBar = $state(DEFAULTS.showInfoBar);
+
+	let isMobileViewport = $state(false);
+
+	$effect(() => {
+		if (!browser) return;
+		const mq = window.matchMedia('(max-width: 768px)');
+		const sync = () => {
+			isMobileViewport = mq.matches;
+		};
+		sync();
+		mq.addEventListener('change', sync);
+		return () => mq.removeEventListener('change', sync);
+	});
+
+	const previewSlideWidth = $derived(isMobileViewport ? Math.min(slideWidth, 210) : slideWidth);
+	const previewSlideHeight = $derived(isMobileViewport ? Math.min(slideHeight, 280) : slideHeight);
+	const previewSlideGap = $derived(isMobileViewport ? Math.min(slideGap, 72) : slideGap);
+	const previewArcDepth = $derived(isMobileViewport ? Math.min(arcDepth, 120) : arcDepth);
+	const previewCenterLift = $derived(isMobileViewport ? Math.min(centerLift, 28) : centerLift);
 
 	const hasChanges = $derived(
 		slideWidth !== DEFAULTS.slideWidth ||
@@ -99,11 +119,11 @@
 			<p class="demo-hint">Прокрутите колёсиком или свайпом — слайды двигаются по 3D-дуге</p>
 			<CinematicSlider
 				slides={DEFAULT_CINEMATIC_SLIDES}
-				{slideWidth}
-				{slideHeight}
-				{slideGap}
-				{arcDepth}
-				{centerLift}
+				slideWidth={previewSlideWidth}
+				slideHeight={previewSlideHeight}
+				slideGap={previewSlideGap}
+				arcDepth={previewArcDepth}
+				centerLift={previewCenterLift}
 				{scrollLerp}
 				{wheelMultiplier}
 				{showInfoBar}
@@ -201,6 +221,18 @@
 		text-align: center;
 		pointer-events: none;
 		user-select: none;
-		white-space: nowrap;
+		max-width: min(92%, 22rem);
+		line-height: 1.35;
+	}
+
+	@media (max-width: 768px) {
+		.demo-hint {
+			font-size: 0.75rem;
+			white-space: normal;
+		}
+
+		:global(.cinematic-demo) {
+			height: 520px !important;
+		}
 	}
 </style>

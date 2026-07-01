@@ -333,13 +333,26 @@
 <style>
 	@media (max-width: 768px) {
 		.info-bar {
-			gap: 1rem;
-			padding: 0.4rem 1.2rem;
-			bottom: 24%;
+			gap: 0.5rem;
+			padding: 0.35rem 0.85rem;
+			bottom: 22%;
+			font-size: clamp(0.68rem, 2.8vw, 0.9rem);
+			max-width: calc(100% - 1.25rem);
+			white-space: normal;
+			flex-wrap: wrap;
+			justify-content: center;
+			text-align: center;
+		}
+
+		.slide-title {
+			max-width: 12ch;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		.links {
-			gap: 0.8rem;
+			display: none;
 		}
 	}
 </style>
