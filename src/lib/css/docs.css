@@ -198,6 +198,13 @@
 }
 
 /* ─── Mobile sidebar drawer ────────────────────────────────────────────────── */
+@media only screen and (max-width: 968px) {
+	.sidebar {
+		border-right: none;
+	}
+}
+
+
 .docs-drawer-backdrop {
 	position: fixed;
 	inset: 0;
@@ -464,7 +471,7 @@
 /* ─── Docs (intro/install) typography ──────────────────────────────────────── */
 .docs-section {
 	padding-bottom: 100px;
-	max-width: 675px;
+	/* max-width: 675px; */
 	margin-left: auto;
 	margin-right: auto;
 }

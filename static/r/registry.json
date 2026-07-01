@@ -1325,6 +1325,21 @@
 			]
 		},
 		{
+			"name": "button",
+			"title": "Button",
+			"description": "Customizable button with variants, focus ring, and optional sparkle decoration.",
+			"type": "registry:component",
+			"dependencies": [],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "Button.svelte",
+					"target": "$lib/components/svelte-bits/Button.svelte"
+				}
+			]
+		},
+		{
 			"name": "card-nav",
 			"title": "Card Nav",
 			"description": "Expandable navbar with three reveal cards animated by GSAP.",
@@ -1412,6 +1427,24 @@
 			]
 		},
 		{
+			"name": "cinematic-slider",
+			"title": "Cinematic 3D Slider",
+			"description": "Infinite image slider with cinematic 3D arc layout, scroll inertia, and animated title.",
+			"type": "registry:component",
+			"dependencies": [
+				"gsap",
+				"gsap@^3.15.0"
+			],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "CinematicSlider.svelte",
+					"target": "$lib/components/svelte-bits/CinematicSlider.svelte"
+				}
+			]
+		},
+		{
 			"name": "circular-gallery",
 			"title": "Circular Gallery",
 			"description": "WebGL bent gallery with momentum scroll, picture-frame distortion, and titles.",
@@ -1468,6 +1501,26 @@
 			]
 		},
 		{
+			"name": "distortion-slider",
+			"title": "Distortion Slider",
+			"description": "Three.js image slider with vertex distortion, momentum scroll, and drag interaction.",
+			"type": "registry:component",
+			"dependencies": [
+				"three",
+				"three@^0.184.0"
+			],
+			"registryDependencies": [
+				"image-proxy"
+			],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "DistortionSlider.svelte",
+					"target": "$lib/components/svelte-bits/DistortionSlider.svelte"
+				}
+			]
+		},
+		{
 			"name": "dock",
 			"title": "Dock",
 			"description": "macOS-style magnification dock with spring physics. Each item scales smoothly based on cursor distance.",
@@ -1497,6 +1550,24 @@
 					"type": "registry:component",
 					"path": "DomeGallery.svelte",
 					"target": "$lib/components/svelte-bits/DomeGallery.svelte"
+				}
+			]
+		},
+		{
+			"name": "draggable-pill-nav",
+			"title": "Draggable Pill Nav",
+			"description": "Draggable pill-shaped nav with elastic expand/collapse and snap-back drop zone.",
+			"type": "registry:component",
+			"dependencies": [
+				"gsap",
+				"gsap@^3.15.0"
+			],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "DraggablePillNav.svelte",
+					"target": "$lib/components/svelte-bits/DraggablePillNav.svelte"
 				}
 			]
 		},
@@ -2058,6 +2129,21 @@
 					"type": "registry:component",
 					"path": "ScrambledText.svelte",
 					"target": "$lib/components/svelte-bits/ScrambledText.svelte"
+				}
+			]
+		},
+		{
+			"name": "scrambling-ascii",
+			"title": "Scrambling ASCII",
+			"description": "Interactive ASCII grid logo with character scrambling and mouse-repulsion physics.",
+			"type": "registry:component",
+			"dependencies": [],
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "ScramblingASCII.svelte",
+					"target": "$lib/components/svelte-bits/ScramblingASCII.svelte"
 				}
 			]
 		},

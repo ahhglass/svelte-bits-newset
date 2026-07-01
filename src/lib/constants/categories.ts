@@ -1,6 +1,6 @@
 import { categoryLabel, subcategoryLabel } from './categoryLabels';
 
-export const NEW: string[] = [];
+export const NEW: string[] = ['draggable-pill-nav', 'scrambling-ascii', 'cinematic-slider', 'distortion-slider', 'button'];
 
 export const UPDATED: string[] = [];
 
@@ -46,6 +46,7 @@ export const CATEGORIES: Category[] = [
 		'Scroll Float',
 		'Scroll Reveal',
 		'ASCII Text',
+		'Scrambling ASCII',
 		'Scrambled Text',
 		'Rotating Text',
 		'Glitch Text',
@@ -95,6 +96,7 @@ export const CATEGORIES: Category[] = [
 		'Card Nav v2',
 		'Stack',
 		'Pill Nav',
+		'Draggable Pill Nav',
 		'Tilted Card',
 		'Masonry',
 		'Glass Surface',
@@ -105,9 +107,12 @@ export const CATEGORIES: Category[] = [
 		'Model Viewer',
 		'Profile Card',
 		'Dock',
+		'Button',
 		'Gooey Nav',
 		'Pixel Card',
 		'Carousel',
+		'Cinematic Slider',
+		'Distortion Slider',
 		'Spotlight Card',
 		'Border Glow',
 		'Flying Posters',
@@ -188,6 +193,7 @@ export const IMPLEMENTED_DEMOS = new Set<string>([
 	'scroll-float',
 	'animated-content',
 	'dock',
+	'button',
 	'aurora',
 	'balatro',
 	'iridescence',
@@ -273,6 +279,8 @@ export const IMPLEMENTED_DEMOS = new Set<string>([
 	'card-nav-v2',
 	'card-swap',
 	'carousel',
+	'cinematic-slider',
+	'distortion-slider',
 	'chroma-grid',
 	'counter',
 	'decay-card',
@@ -290,6 +298,7 @@ export const IMPLEMENTED_DEMOS = new Set<string>([
 	'stepper',
 	'scroll-stack',
 	'pill-nav',
+	'draggable-pill-nav',
 	'staggered-menu',
 	'profile-card',
 	'magic-bento',
@@ -310,6 +319,7 @@ export const IMPLEMENTED_DEMOS = new Set<string>([
 	'rotating-text',
 	'scroll-reveal',
 	'ascii-text',
+	'scrambling-ascii',
 	'variable-proximity',
 	'scroll-velocity'
 ]);
